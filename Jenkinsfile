@@ -15,6 +15,19 @@ pipeline {
                 }
             }
         }
+           stage('Install Chromium') {
+            steps {
+                script {
+                    // Chromiumのインストール
+                    powershell '''
+                        $url = 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
+                        $file = 'chrome.deb'
+                        Invoke-WebRequest -Uri $url -OutFile $file
+                        sudo dpkg -i $file
+                        sudo apt-get install -f
+                        rm $file
+                    '''
+                }
 
         stage('Test') {
             steps {
