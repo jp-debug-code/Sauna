@@ -28,6 +28,9 @@ pipeline {
                         rm $file
                     '''
                 }
+            }
+           }
+        
 
         stage('Test') {
             steps {
